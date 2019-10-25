@@ -1,5 +1,0 @@
-list(APPEND SOURCES
-    ${CMAKE_CURRENT_LIST_DIR}/startup.S
-)
-
-set(LINKER_SCRIPT_SOURCE ${CMAKE_CURRENT_LIST_DIR}/neoboot.lds.S)
