@@ -1,0 +1,33 @@
+.text
+
+    .globl _start
+_start:
+    /* Check for CPU #0 */
+    mrs     x0, mpidr_el1
+    and     x0, x0, #3
+    cmp     x0, #0
+    bne     hang
+
+reset_vector_base:
+    ldr     x1, =vectors
+    msr     vbar_el1, x1
+
+    /* Configure stack */
+    adrp    x0, stack_top
+    mov     sp, x0
+
+    /* clear bss */
+    ldr     x0, bss_start
+    ldr     x1, bss_end
+    mov     x2, #0
+1:  str     x2, [x0]
+    add     x0, x0, #8
+    cmp     x0, x1
+    ble     1b
+
+    /* Jump to main */
+    bl      main
+
+hang:
+    wfi
+    b       hang

@@ -1,0 +1,12 @@
+build/
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+src/platform/h3/CMakeFiles
+src/platform/h3/cmake_install.cmake
+src/platform/h3/Makefile
+src/platform/h5/CMakeFiles
+src/platform/h5/cmake_install.cmake
+src/platform/h5/Makefile
+doc/*.pdf
