@@ -1,5 +1,5 @@
 #define SRAM_A1 (0x00010000)
-#define SRAM_C (0x00018000)
+#define STACK_SIZE (4 << 10)
 
 OUTPUT_FORMAT("elf64-littleaarch64", "elf64-bigaarch64", "elf64-littleaarch64")
 OUTPUT_ARCH(aarch64)
@@ -9,10 +9,11 @@ SECTIONS
     . = SRAM_A1;
     .text : { *(.text) }
     .data : { *(.data) }
+    . = ALIGN(16);
     bss_start = .;
     .bss : { *(.bss) }
-    bss_end = .;
     . = ALIGN(16);
-    . = . + 0x1000; /* 4k stack */
+    bss_end = .;
+    . = . + STACK_SIZE;
     stack_top = .;
 }

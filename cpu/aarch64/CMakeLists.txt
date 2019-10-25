@@ -1,7 +1,5 @@
 list(APPEND SOURCES
     ${CMAKE_CURRENT_LIST_DIR}/startup.S
-    ${CMAKE_CURRENT_LIST_DIR}/vector.S
-    ${CMAKE_CURRENT_LIST_DIR}/exception.c
 )
 
 set(LINKER_SCRIPT_SOURCE ${CMAKE_CURRENT_LIST_DIR}/neoboot.lds.S)

@@ -8,21 +8,19 @@ _start:
     cmp     x0, #0
     bne     hang
 
-reset_vector_base:
-    ldr     x1, =vectors
-    msr     vbar_el1, x1
+//    ldr     x1, =vectors
+//    msr     vbar_el1, x1
 
     /* Configure stack */
     adrp    x0, stack_top
     mov     sp, x0
 
-    /* clear bss */
+    /* Clear bss */
     ldr     x0, bss_start
     ldr     x1, bss_end
     mov     x2, #0
-1:  str     x2, [x0]
-    add     x0, x0, #8
-    cmp     x0, x1
+1:  stp     x2, x2, [x0, #16]!
+    cmp     sp, x1
     ble     1b
 
     /* Jump to main */
