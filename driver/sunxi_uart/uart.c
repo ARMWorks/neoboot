@@ -15,7 +15,14 @@ void uart_putc(char c)
     while (*uart0_lsr & 0x20 == 0);
     *uart0_thr = c;
 }
-void _putchar(char c) __attribute__((weak, alias("uart_putc")));
+
+__attribute__((weak))
+void _putchar(char c)  
+{
+    if (c == '\n')
+        uart_putc('\r');
+    uart_putc(c);
+}
 
 char uart_getc(void)
 {
