@@ -1,0 +1,6 @@
+[submodule "libc/libc"]
+	path = libc/libc
+	url = https://github.com/embeddedartistry/libc.git
+[submodule "libc/libmemory"]
+	path = libc/libmemory
+	url = https://github.com/embeddedartistry/libmemory.git

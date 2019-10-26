@@ -6,18 +6,21 @@ if(NOT IS_DIRECTORY "${CMAKE_SOURCE_DIR}/platform/${PLATFORM}/")
 endif()
 
 include(platform/${PLATFORM}/CMakeLists.txt)
-list(APPEND SOURCES
-    ${CMAKE_CURRENT_LIST_DIR}/main.c
-)
-list(APPEND INCLUDES
-    ${CMAKE_CURRENT_LIST_DIR}/include
-)
 
 project(neoboot C ASM)
 
-add_executable(${PROJECT_NAME}-${PLATFORM}.elf ${SOURCES})
-set_target_properties(${PROJECT_NAME}-${PLATFORM}.elf PROPERTIES
-    INCLUDE_DIRECTORIES ${INCLUDES}
+include(libc/CMakeLists.txt)
+list(APPEND INCLUDES
+    ${CMAKE_CURRENT_LIST_DIR}/include
+)
+list(APPEND SOURCES
+    ${CMAKE_CURRENT_LIST_DIR}/main.c
+)
+
+set(TARGET ${PROJECT_NAME}-${PLATFORM}.elf)
+add_executable(${TARGET} ${SOURCES})
+target_include_directories(${TARGET} PUBLIC ${INCLUDES})
+set_target_properties(${TARGET} PROPERTIES
     LINK_FLAGS "-Wl,-T${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-${PLATFORM}.lds,-M=${PROJECT_NAME}-${PLATFORM}.map,--gc-sections"
 )
 
@@ -34,9 +37,9 @@ add_custom_target(linkerscript
     VERBATIM
 )
 
-add_dependencies(${PROJECT_NAME}-${PLATFORM}.elf linkerscript)
+add_dependencies(${TARGET} linkerscript)
 
 add_custom_command(
-    TARGET ${PROJECT_NAME}-${PLATFORM}.elf POST_BUILD
-    COMMAND ${CMAKE_OBJCOPY} -O binary ${PROJECT_NAME}-${PLATFORM}.elf ${PROJECT_NAME}-${PLATFORM}.bin
+    TARGET ${TARGET} POST_BUILD
+    COMMAND ${CMAKE_OBJCOPY} -O binary ${TARGET} ${PROJECT_NAME}-${PLATFORM}.bin
 )

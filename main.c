@@ -1,9 +1,10 @@
+#include <stdio.h>
 #include "uart.h"
 
 void main(void)
 {
     uart_init();
-    uart_putc('!');
+    puts("Hello world!");
 
     while (1);
 }
