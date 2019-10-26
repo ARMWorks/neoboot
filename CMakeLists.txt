@@ -36,7 +36,10 @@ add_custom_target(linkerscript
 
 add_dependencies(${TARGET} linkerscript)
 
+find_package(PythonInterp REQUIRED)
 add_custom_command(
     TARGET ${TARGET} POST_BUILD
     COMMAND ${CMAKE_OBJCOPY} -O binary ${TARGET} ${PROJECT_NAME}-${PLATFORM}.bin
+    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tools/mksunxiboot.py ${PROJECT_NAME}-${PLATFORM}.bin
+    COMMENT "-- Generating ${PROJECT_NAME}-${PLATFORM}.bin"
 )

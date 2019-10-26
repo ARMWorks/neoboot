@@ -1,6 +1,11 @@
 .text
 
-    .globl _start
+    .globl  _reset
+_reset:
+    b       _start
+
+
+    .org    _reset + 96, 0
 _start:
     /* Check for CPU #0 */
     mrs     x0, mpidr_el1
