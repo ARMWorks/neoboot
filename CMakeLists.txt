@@ -1,20 +1,17 @@
 cmake_minimum_required(VERSION 2.8)
 
 option(PLATFORM "Platform to build bootloader for." "")
-if(NOT IS_DIRECTORY "${CMAKE_SOURCE_DIR}/platform/${PLATFORM}/")
+if(NOT IS_DIRECTORY "${CMAKE_SOURCE_DIR}/src/platform/${PLATFORM}/")
     message(FATAL_ERROR "Platform undefined or unsupported.")
 endif()
 
-include(platform/${PLATFORM}/CMakeLists.txt)
+include(src/platform/${PLATFORM}/CMakeLists.txt)
 
 project(neoboot C ASM)
 
-include(libc/CMakeLists.txt)
+include(src/CMakeLists.txt)
 list(APPEND INCLUDES
     ${CMAKE_CURRENT_LIST_DIR}/include
-)
-list(APPEND SOURCES
-    ${CMAKE_CURRENT_LIST_DIR}/main.c
 )
 
 set(TARGET ${PROJECT_NAME}-${PLATFORM}.elf)
