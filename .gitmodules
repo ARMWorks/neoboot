@@ -1,6 +1,6 @@
 [submodule "src/libc"]
-	path = src/libc
-	url = https://github.com/embeddedartistry/libc.git
+	path = deps/libc
+	url = https://github.com/jkent/embeddedartistry-libc.git
 [submodule "src/libmemory"]
-	path = src/libmemory
+	path = deps/libmemory
 	url = https://github.com/embeddedartistry/libmemory.git

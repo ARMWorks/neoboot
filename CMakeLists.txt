@@ -1,14 +1,18 @@
 cmake_minimum_required(VERSION 2.8)
 
 option(PLATFORM "Platform to build bootloader for." "")
-if(NOT IS_DIRECTORY "${CMAKE_SOURCE_DIR}/src/platform/${PLATFORM}/")
+if(PLATFORM STREQUAL "sunxi-h5")
+    set(CPU "armv8")
+else()
     message(FATAL_ERROR "Platform undefined or unsupported.")
 endif()
 
-include(src/platform/${PLATFORM}/CMakeLists.txt)
-
+set(CMAKE_TOOLCHAIN_FILE "cpu/${CPU}/toolchain.cmake" CACHE PATH "toolchain file")
 project(neoboot C ASM)
 
+include(cpu/${CPU}/CMakeLists.txt)
+include(platform/${PLATFORM}/CMakeLists.txt)
+include(deps/CMakeLists.txt)
 include(src/CMakeLists.txt)
 list(APPEND INCLUDES
     ${CMAKE_CURRENT_LIST_DIR}/include

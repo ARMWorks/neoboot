@@ -1,0 +1,1 @@
+include(drivers/sunxi_uart/CMakeLists.txt)

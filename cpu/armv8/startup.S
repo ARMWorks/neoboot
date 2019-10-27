@@ -1,5 +1,4 @@
-.text
-
+    .text
     .globl  _reset
 _reset:
     b       _start
