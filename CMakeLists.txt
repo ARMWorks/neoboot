@@ -21,6 +21,7 @@ list(APPEND INCLUDES
 set(TARGET ${PROJECT_NAME}-${PLATFORM}.elf)
 add_executable(${TARGET} ${SOURCES})
 target_include_directories(${TARGET} PUBLIC ${INCLUDES})
+target_compile_definitions(${TARGET} PUBLIC ${DEFINES})
 set_target_properties(${TARGET} PROPERTIES
     LINK_FLAGS "-Wl,-T${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-${PLATFORM}.lds,-M=${PROJECT_NAME}-${PLATFORM}.map,--gc-sections"
 )

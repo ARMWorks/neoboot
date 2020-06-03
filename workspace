@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "/home/jkent/Projects/fe/u-boot"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"dram_sunxi_dw.h": "c"
+		}
+	}
+}

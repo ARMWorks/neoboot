@@ -22,7 +22,7 @@ set(CMAKE_OBJCOPY ${TC_PATH}${CROSS_COMPILE}objcopy
 
 # Set the CMAKE C flags (which should also be used by the assembler!
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O2 -march=armv8-a+crc+crypto -mtune=cortex-a53")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -ffreestanding -nostartfiles -nostdlib")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -ffreestanding -nostartfiles -nostdlib -nostdinc")
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}" CACHE STRING "")
 set(CMAKE_ASM_FLAGS "${CMAKE_C_FLAGS}" CACHE STRING "")

@@ -1,0 +1,4 @@
+list(APPEND SOURCES
+    ${CMAKE_CURRENT_LIST_DIR}/ddr3_1333.c
+    ${CMAKE_CURRENT_LIST_DIR}/dram_sunxi_dw.c
+)
